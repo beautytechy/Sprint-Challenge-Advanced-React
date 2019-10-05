@@ -1,25 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 import "../App.css";
 
-const PlayerCard = (props) => {
-    console.log("playercard props", props)
-    // const { name } = props.playerdata;
-    // const { country } = props.playerdata;
-    // const { searches } = props.playerdata;
+class PlayerCard extends Component {
+
+
+  render() {
     return (
-        <div className="players">
-        {props.playerdata.map((item) => (
-        
-                <div className="player-container">
-                <h3>{item.name}</h3>
-                <p>{item.country}</p>
-                </div>
-                
-      ))}
-
-
-        </div>
-    )
+      <div data-testid="player" key={this.props.id}>
+        <h2>{this.props.name}</h2>
+        <h2>{this.props.country}`}</h2>
+        <h2>{this.props.searches}`}</h2>
+      </div>
+    );
+  }
 }
 
 export default PlayerCard;

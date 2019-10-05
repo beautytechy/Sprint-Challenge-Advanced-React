@@ -1,44 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import data from "../src/data";
+import useFetch from "./hooks/useFetch";
 import PlayerCard from "./components/PlayerCard";
 
-class App extends Component {
 
-  state = {
-    playerinfo: [],
-    
+const App = () => {
 
-  };
+  const [playerdata, setPlayers] = useFetch('http://localhost:5000/api/players');
 
-  componentDidMount() {
-    
-        this.setState({
-         
-          playerinfo: data.data
-        });
-      }
-
-  render() {
-    console.log(this.state.playerinfo);
-    return (
-      <div className="App">
-        <header className="App-header">
-         Women's Soccer Trends
-         <PlayerCard
-           playerdata={this.state.playerinfo}
-           />
-        </header>
-          
-        
-          
-          />
-
-       
-
+  return (
+    <div className="App">
+      <h1>Women's Soccer Trends</h1>
+      <div className="players">
+        {
+          playerdata.map(
+            item => {
+              return (
+                <PlayerCard
+                  key={item.id}
+                  name={item.name}
+                  country={item.country}
+                  searches={item.searches}
+                />
+              )})
+        }
       </div>
-
-    );
-  }
+    </div>
+  );
 }
+
 export default App;

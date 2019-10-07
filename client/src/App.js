@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import useFetch from "./hooks/useFetch";
+import PlayerCard from "./components/PlayerCard";
 
-function App() {
+
+const App = () => {
+
+  const [playerdata, setPlayers] = useFetch('http://localhost:5000/api/players');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Soccer Searches</h1>
+      <div className="players">
+        {playerdata.map(item => {
+          return (
+            <PlayerCard
+              key={item.id}
+              name={item.name}
+              country={item.country}
+              searches={item.searches}
+            />
+          )
+        })
+        }
+      </div>
     </div>
   );
 }

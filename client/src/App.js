@@ -10,19 +10,18 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Women's Soccer Trends</h1>
+      <h1>Soccer Searches</h1>
       <div className="players">
-        {playerdata.map(
-          item => {
-            return (
-              <PlayerCard
-                key={item.id}
-                name={item.name}
-                country={item.country}
-                searches={item.searches}
-              />
-            )
-          })
+        {playerdata.map(item => {
+          return (
+            <PlayerCard
+              key={item.id}
+              name={item.name}
+              country={item.country}
+              searches={item.searches}
+            />
+          )
+        })
         }
       </div>
     </div>
